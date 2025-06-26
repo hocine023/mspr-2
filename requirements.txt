@@ -1,0 +1,11 @@
+flask
+flask-cors
+dash
+pandas
+plotly
+flasgger
+psycopg2-binary
+python-dotenv
+scikit-learn
+requests
+catboost

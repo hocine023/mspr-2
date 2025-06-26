@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:13
+    restart: always
+    container_name: postgres-mspr
+    environment:
+      POSTGRES_DB: covid
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: hocine
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: api-mspr
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+    volumes:
+      - ./models:/app/models
+      - ./load:/app/load
+      - .:/app
+    networks:
+      - backend
+
+volumes:
+  postgres_data:
+
+networks:
+  backend:
