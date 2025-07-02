@@ -36,7 +36,7 @@ def create_app():
     app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY')
     app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
 
-    # ✅ Configuration Swagger
+    #  Configuration Swagger
     app.config['SWAGGER'] = {
         'title': 'Pandemic API',
         'uiversion': 3
@@ -59,7 +59,7 @@ def create_app():
    
 def main():
     app = create_app()
-    app.run(debug=True, host="0.0.0.0")  # ✅ Important pour Docker
+    app.run(debug=True, host="0.0.0.0")  
 
 if __name__ == "__main__":
     main()

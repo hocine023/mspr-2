@@ -34,6 +34,21 @@ services:
     networks:
       - backend
 
+  front:
+    build:
+      context: ./dashboard
+      dockerfile: Dockerfile
+    container_name: front-mspr
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./dashboard:/app        # code de ton host
+      - /app/node_modules       # volume anonyme pour conserver node_modules
+    networks:
+      - backend
+    depends_on:
+      - api
+
 volumes:
   postgres_data:
 
